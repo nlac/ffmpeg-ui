@@ -1,0 +1,46 @@
+{
+	"type": "VerticalLayout",
+	"elements": [
+		{
+			"scope": "#/properties/name",
+			"type": "Control",
+			"label": "Name"
+		},
+		{
+			"scope": "#/properties/timestamps",
+			"type": "MediaRange",
+			"src": "/media/fight.mp4",
+			"mime": "video/mp4",
+			"startOnly": false,
+			"css": {
+				"grid": {
+					"width": "50%"
+				},
+				"media": {
+					"height": "250px"
+				}
+			}
+		},
+		{
+			"scope": "#/properties/inputs",
+			"type": "Control",
+			"label": "Inputs",
+			"options": {
+				"detail": {
+					"scope": "",
+					"type": "MediaRange",
+					"src": "/media/fight.mp4",
+					"mime": "video/mp4",
+					"css": {
+						"grid": {
+							"width": "50%"
+						},
+						"media": {
+							"height": "250px"
+						}
+					}
+				}
+			}
+		}
+	]
+}
