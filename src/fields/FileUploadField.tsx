@@ -34,7 +34,7 @@ class FileUploadField extends BaseField {
 	}
 
 	onIdChange = (e:any) => {
-		const v = new String(e.target.value)
+		const v = String(e.target.value)
 		this.setState((state:any) => {
 			state.fieldData[0].id = v
 		}, () => {
@@ -100,7 +100,7 @@ class FileUploadField extends BaseField {
 				)
 			}
 			return (
-				<img key={i} src={file.url} className="thumb"></img>
+				<img key={i} src={file.url} className="thumb" />
 			)
 		})
 	}

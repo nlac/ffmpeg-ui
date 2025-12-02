@@ -69,9 +69,6 @@ export default class WorkFlow extends React.Component<any, any> {
 					<Tab eventKey={1} title="Inputs ⯈">
 						<div className="container keep-t">
 							<InputsForm></InputsForm>
-							<div className="alert alert-info" role="alert">
-								<strong>For Chrome users:</strong> you need to start Chrome with the <code>--allow-file-access-from-files</code> flag
-							</div>
 						</div>
 					</Tab>
 					<Tab eventKey={2} title="Ranges ⯈">

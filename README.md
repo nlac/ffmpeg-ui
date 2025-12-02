@@ -1,46 +1,88 @@
-## FFMPEGUI
+# FFMpeg UI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A web-based GUI for generating complex FFmpeg commands with dynamic form generation and visual video range selection. Build advanced video processing workflows directly in your browser with zero backend overhead. 
 
-## Available Scripts
+[Online app](https://nlacsoft.net/ffmpegui)
 
-In the project directory, you can run:
+[Short demo video](https://nlacsoft.net/ffmpegui/ffmpegui.mp4)
 
-### `npm start`
+## Overview
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**FFMpeg UI** is a React application that abstracts FFmpeg's complexity into an intuitive, multi-step workflow interface. The application runs entirely in-browser with no backend component, allowing you to:
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+- Upload and manage multiple media files (video, audio)
+- Visually select temporal ranges with interactive media conponent
+- Build filter chains with real-time validation
+- Configure encoding parameters
+- Generate production-ready FFmpeg commands
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 🎬 Visual Video Range Selection
 
-### `npm run build`
+The `MediaRangeField` component provides an interactive timeline-based interface for precise temporal editing:
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img src="./ff3.jpg" alt="ranges" width="50%" />
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+**Advanced Features:**
+- **Dual-Mode Media Player**: Native HTML5 video/audio elements with standard playback controls
+- **Frame-Accurate Selection**: Set start/end points with sub-second precision (displayed to 2 decimal places)
+- **Play Between Ranges**: Automatically loops playback between selected start and end times
+- **Cascading Ranges**: Creatable select dropdowns suggest end times from previously selected ranges
+- **Event-Driven Updates**: Range changes trigger automatic filter chain prepending with appropriate trim/atrim filters
+- **Bidirectional Sync**: Video player state stays synchronized with form data
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 🔧 Extensible Filter Chain Architecture
 
-### `npm run eject`
+The application supports a composable filter system:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<img src="./ff4.jpg" alt="outputs" width="50%" />
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Included Filters:** (so far)
+- `trim` / `atrim` - Temporal range selection (video/audio)
+- `scale` - Video resolution scaling with expression support
+- `fade` - Fade in/out effects
+- `concat` - Multi-stream concatenation with automatic parameter sync
+- `setpts` - PTS adjustment for smooth transitions
+- `minterpolate` - Frame interpolation
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 📊 Multi-Input Stream Mapping
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The `InputStream` and `OutputStream` components provide stream mapping with:
 
-## Learn More
+- Media type detection (video vs audio)
+- Stream specifier generation following FFmpeg conventions: `[input:type:index]`
+- Type-safe mapping with `MediaType` enum
+- Support for complex filter graph topologies
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### ⚙️ Encoder Configuration
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The `EncoderModel` generates encoder schemas from the Repository
+
+<img src="./ff6.jpg" alt="outputs" width="50%" />
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| **Frontend Framework** | React 16.8+ with React Router 5 |
+| **Type Safety** | TypeScript 4.9+ (strict mode) |
+| **Form System** | react-jsonschema-form + [ruled-jsonschema-form](https://github.com/nlac/ruled-jsonschema-form) |
+| **Styling** | SCSS with Bootstrap 3.4 |
+| **State Management** | Repository singleton + localStorage |
+| **UI Components** | React-Bootstrap, React-Select (with creatable options) |
+| **Media Handling** | Native HTML5 + react-dropzone |
+| **Build Tools** | Create React App, Sass compiler |
+
+## Getting Started
+
+```bash
+npm install
+npm start  # Starts dev server on http://localhost:3000
+```
+
+### Browser Requirements
+
+- **Modern browsers** with HTML5 audio/video support
+- ES5+ JavaScript support (via Create React App transpilation)
+

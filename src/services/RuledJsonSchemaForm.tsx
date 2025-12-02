@@ -43,10 +43,6 @@ class FormRuleEngine {
 		cloneProps(exp, /\bdata\b/, data)
 
 		try {
-			// Some think eval() is evil,
-			// i think eval() is the strongest solution for some problems, like a rule engine: 
-			// why implement an own expression evaluator for a crippled own "language" when you instantly have the power of the full js, in one method.
-			// For security creeps: it runs in the browser - anything executed here can also be executed by opening a console by (usually) F12.
 			return eval(exp)
 		} catch (e) {
 			console.error("Error evaluating expression: " + exp)
